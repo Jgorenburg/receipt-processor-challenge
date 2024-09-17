@@ -1,3 +1,22 @@
+# Instructions
+
+## Setup
+
+Node.js and npm are required to run this webservice. If you do not already have them installed, you can do so [here](https://nodejs.org/en/download/package-manager). 
+
+I used curl to test the webservice, which can be downloaded [here](https://curl.se/download.html) 
+
+All other setup should be done by building the Dockerfile: `docker build -t receipts .`
+
+
+## Run
+
+Initialize a container using `docker run -p 3000:3000 receipts`
+
+You can test the webservice using curl 
+- POST: `curl --data {data loc} -H "Content-Type: application/json" http://localhost:3000/receipts/process`
+- GET: `curl http://localhost:3000/receipts/{id}/points`
+
 # Receipt Processor
 
 Build a webservice that fulfils the documented API. The API is described below. A formal definition is provided 
