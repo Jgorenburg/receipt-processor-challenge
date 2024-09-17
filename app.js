@@ -29,7 +29,7 @@ app.post('/receipts/process', (req, res) => {
 })
 
 app.listen(3000, () => {
-    console.log('Example app listening on port 3000!')
+    console.log('Receipt Processor listening on port 3000!')
 })
 
 
@@ -89,7 +89,10 @@ function calculatePoints(receipt) {
         throw new ReceiptError("Receipt must contain at least one purchased item")
     }
 
+    // points based on number of items
     let itemPoints = Math.floor(items.length / 2) * 5
+
+    // points for each item
     for (i = 0; i < items.length; i++) {
         const item = items[i]
 
@@ -127,8 +130,8 @@ function calculatePoints(receipt) {
         throw new ReceiptError("Invalid time")
     }
 
-    // I'm treating the range as not inclusive, so if a purchase is at exactly 14:00, it
-    // will award no points
+    // My interpretation of the rules is that the range is non-inclusive, so if 
+    // a purchase is at exactly 14:00, it will award no points
     const hour = time[1]
     if (hour == "15" ||
         (hour == "14" && time[2] != "00")
